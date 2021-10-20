@@ -1,0 +1,147 @@
+1) select ename, job
+   from emp 
+   where job = 'clerk';
+
+2) select ename, job
+   from emp 
+   where job = 'clerk' or job = 'manager';
+
+3) select GETDATE() as 'todays date';
+
+4) select
+   ename, sal
+   from emp 
+   where sal between '500' and '1000';
+
+5) select 
+   ename,
+   hiredate
+   from emp       
+   where month(hiredate)='12';
+
+6) select
+   ename,
+   sal
+   from emp 
+   where sal not between '1000' and '2500';
+
+7) select
+   ename,
+   sal
+   from emp 
+   where sal = '800' or sal = '950' or sal = '3000' or sal = '5000';
+
+8) select ename
+   from EMP
+   where ename like '_L%';
+
+9) select ename
+   from EMP
+   where ename like '%D';
+
+10) select ename
+    from EMP
+    where length(ename) = 5;
+
+11) select ename
+    from EMP
+    where ename like  'T%R';
+
+12) select ename
+    from EMP
+    where ename like  '%A%';
+
+13) select ename, hiredate
+    from emp
+    where to_char(hiredate,'dd') < 19;
+
+14) select 
+    ename,
+    empno
+    from emp
+    where ename = 'james';
+
+15) select 
+    ename,
+    sal
+    from emp
+    where ename = 'king';
+
+16) select
+    ename,
+    job
+    from emp
+    where job='president';
+
+17) select e.*, d.dname, d.loc
+    from emp e, dept d
+    where job='manager' and e.deptno = d.deptno
+
+18) select e.*
+    from emp e
+    where comm is not null
+
+19) select e.*
+    from emp e 
+    WHERE
+    HIREDATE < '1981-04-01' ; 
+
+
+20) select ename, sal
+    from emp
+    where ename='king' or ename='blake' or ename='ford' or ename='smith'
+
+21) select ename, sal, job
+    from emp
+    where sal<3500;
+
+22) select e.*
+    from emp e 
+    where job = 'clerk'; 
+
+23) select ename, sal as 'monthly salary', sal*12 as 'annual sal'
+    from emp;
+
+24) select ename, sal, (sal/100)*20 as 'hike', (sal+(sal*20/100))*12 as 'annual salary', sal*12 as 'without hike'
+    from emp
+    where ename='ford';
+
+25) select e.deptno, d.dname, sum(sal) as 'total salary' 
+    from emp e, dept d
+    group by e.deptno; 
+
+26) select e.ename, e.deptno, d.dname, e.sal 
+    from emp e, dept d 
+    where e.deptno=d.deptno and e.deptno='10' and sal <= all(
+    select sal from emp where deptno=10 );
+
+27) select  job, avg(sal) as 'average salary'
+    from emp
+    where job='manager';
+
+28) select job, sum(sal) as 'total salary'
+    from emp 
+    where job='salesman'
+
+29) SELECT DEPTNO, AVG(SAL) AS 'LOW_AVG_SALARY'
+    FROM EMP
+    GROUP BY DEPTNO
+     HAVING AVG(SAL)< (SELECT AVG(SAL) FROM EMP);
+
+30) select count(*) as 'person each role', job
+    from emp
+    group by job;
+
+31) select job, sal, deptno
+    from emp
+    where sal >= any (select sal from emp where job='analyst') and job='analyst'
+
+32) SELECT ENAME, MAX(COMM) AS 'HIGHEST_COMMISSION'
+    FROM EMP;
+
+33) select count(deptno) as 'no of dept'
+    from dept;
+
+34) SELECT ENAME
+    FROM EMP
+    WHERE ENAME LIKE '__L%';
